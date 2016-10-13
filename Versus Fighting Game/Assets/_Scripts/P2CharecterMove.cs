@@ -14,11 +14,14 @@ public class P2CharecterMove : MonoBehaviour {
 
     private Vector3 direction;
 
+    
+
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame

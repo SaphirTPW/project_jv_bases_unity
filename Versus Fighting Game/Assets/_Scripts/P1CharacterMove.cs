@@ -15,15 +15,42 @@ public class P1CharacterMove : MonoBehaviour {
 
     private Vector3 direction;
 
+    private bool grounded;
+
+    
+
+    
+
     
     // Use this for initialization
 	void Start ()
     {
         rb = GetComponent<Rigidbody>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+
+    void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.name == "Ground")
+        {
+            Debug.Log("You are grounded");
+            grounded = true;
+            
+        }
+        else
+        {
+            grounded = false;
+            
+        }
+    }
+
+    void Update ()
     {
        direction = Vector3.zero;
         //en avant
@@ -49,10 +76,14 @@ public class P1CharacterMove : MonoBehaviour {
             transform.Translate(direction * Speed * Time.deltaTime);
             direction = Vector3.left * Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
-            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+            grounded = true;
+            Jump();
         }
+
+
+      
 
         
         gameObject.transform.position += direction * Speed * Time.deltaTime;
