@@ -5,7 +5,7 @@ public class P1CharacterMove : MonoBehaviour {
 
     [SerializeField]
 
-    float Speed = 10.0f;
+    float Speed = 20.0f;
 
     [SerializeField]
 
