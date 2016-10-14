@@ -51,10 +51,10 @@ public class P2CharecterMove : MonoBehaviour {
             transform.Translate(direction * Speed * Time.deltaTime);
             direction = Vector3.left * Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.RightShift))
-        {
-            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-        }
+        //if (Input.GetKeyDown(KeyCode.RightShift))
+        //{
+        //    rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        //}
 
 
         gameObject.transform.position += direction * Speed * Time.deltaTime;

@@ -16,12 +16,10 @@ public class P1CharacterMove : MonoBehaviour {
     private Vector3 direction;
 
     private bool grounded;
-
     
-
-    
-
-    
+    [SerializeField]
+    Transform target; 
+   
     // Use this for initialization
 	void Start ()
     {
@@ -30,29 +28,31 @@ public class P1CharacterMove : MonoBehaviour {
 
     // Update is called once per frame
 
-    void Jump()
-    {
-        rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-    }
+    //void Jump()
+    //{
+    //    rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+    //}
 
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.name == "Ground")
-        {
-            Debug.Log("You are grounded");
-            grounded = true;
+    //void OnCollisionEnter(Collision col)
+    //{
+    //    if (col.gameObject.name == "Ground")
+    //    {
+    //        Debug.Log("You are grounded");
+    //        grounded = true;
+    //        Jump();
             
-        }
-        else
-        {
-            grounded = false;
-            
-        }
-    }
+    //    }
+    //    else
+    //    {
+    //        grounded = false;  
+    //    }
+    //}
 
     void Update ()
     {
-       direction = Vector3.zero;
+        transform.LookAt(target);
+
+        direction = Vector3.zero;
         //en avant
         if (Input.GetKey(KeyCode.Z))
         {
@@ -76,11 +76,10 @@ public class P1CharacterMove : MonoBehaviour {
             transform.Translate(direction * Speed * Time.deltaTime);
             direction = Vector3.left * Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
-        {
-            grounded = true;
-            Jump();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Jump();
+        //}
 
 
       
