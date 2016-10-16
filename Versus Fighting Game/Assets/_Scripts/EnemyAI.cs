@@ -3,30 +3,17 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
 
-    private Transform target = null;
     public int maxRange;
     public int minRange;
     private float Speed = 10.0f;
     public float Power;
+	public GameObject target;
 
 
     void Start()
     {
        
         
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        Debug.Log("I got you on my sight ! *^*");
-        if (other.tag == "P1") target = other.transform;
-  
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        Debug.Log("See ya buddy ! ;)");
-        if (other.tag == "P1") target = null;
     }
 
     void OnCollisionEnter (Collision other)
@@ -42,11 +29,8 @@ public class EnemyAI : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-       
         if (target == null) return;
-        transform.LookAt(target);
-        float distance = Vector3.Distance(transform.position, target.position);
-        bool tooClose = distance < minRange;
+        float distance = Vector3.Distance(transform.position, target.transform.position);
         Vector3 direction = /*tooClose ? Vector3.back :*/ Vector3.forward;
         transform.Translate(direction * Time.deltaTime);
 	}
